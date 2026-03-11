@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    ports:
+      -"80:80"
+    restart: always
+
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: always
+    ports:
+      - '80:80'   # HTTP
+      - '443:443' # HTTPS
+      - '81:81'   # Admin NPM for generate to SSL sertificate
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt

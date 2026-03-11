@@ -1,0 +1,480 @@
+/* --- ОСНОВНЫЕ ПЕРЕМЕННЫЕ И СБРОС СТИЛЕЙ --- */
+:root {
+    --primary: #f39c12;    /* Основной строительный оранжевый */
+    --primary-hover: #d35400;
+    --dark: #2c3e50;       /* Темно-синий/серый для заголовков */
+    --light: #f8f9fa;      /* Светло-серый фон секций */
+    --text: #333333;
+    --white: #ffffff;
+    --grey: #bdc3c7;
+}
+
+/* Плавная прокрутка для всего сайта */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Контейнер для логотипа */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 60px; 
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Сама картинка логотипа */
+.logo-img {
+    height: 100%; 
+    width: auto;
+    object-fit: contain;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Общий контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- ОБЩИЕ СТИЛИ КНОПОК --- */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 2px solid var(--white);
+    color: var(--white);
+    margin-left: 15px;
+}
+
+.btn-outline:hover {
+    background: var(--white);
+    color: var(--dark);
+}
+
+.btn-full {
+    width: 100%;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* --- ХЕДЕР И НАВИГАЦИЯ --- */
+.navbar {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Стили логотипа: убираем подчеркивание, добавляем курсор-руку */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Кнопка телефона в навигации */
+.btn-nav {
+    background: var(--dark);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+/* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+.hero {
+    height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    overflow: hidden; /* Важно: чтобы картинка не вылезала за края */
+}
+
+/* Стили для HTML-картинки, чтобы она стала фоном */
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Растягивает картинку красиво без искажений */
+    z-index: 0;        /* Кладет картинку на самый нижний слой */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1; /* Затемнение ложится поверх картинки */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Текст ложится поверх затемнения */
+    max-width: 800px;
+}
+
+/* Затемнение фона для читаемости текста */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* --- ПРЕИМУЩЕСТВА (БЛОКИ СВЕРХУ) --- */
+.features {
+    padding: 50px 0;
+    background: var(--white);
+    transform: translateY(-50px); /* Налезают на Hero */
+    position: relative;
+    z-index: 3;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background: var(--white);
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    border-bottom: 4px solid var(--primary);
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+/* --- ОБЩИЕ СТИЛИ СЕКЦИЙ --- */
+.section {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background: var(--light);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* --- УСЛУГИ (СЕРВИСЫ) --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 40px 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.icon-box {
+    font-size: 3rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+/* --- ГАЛЕРЕЯ (REFERENCE) С ЛОКАЛЬНЫМИ ФОТО --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px; /* Фиксированная высота для ровности сетки */
+}
+
+/* Чтобы картинки загружались ровно */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполняет блок, сохраняя пропорции */
+    transition: transform 0.5s ease;
+    display: block;
+    background: var(--grey); /* Серый фон, пока картинка грузится */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Эффект увеличения при наведении */
+}
+
+/* Затемнение с текстом поверх картинки */
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    color: var(--white);
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* --- КОНТАКТЫ --- */
+.bg-dark {
+    background: var(--dark);
+    color: var(--white);
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+}
+
+.contact-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-text h2 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.contact-text p {
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.c-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.c-item i {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    color: var(--primary);
+}
+
+/* Карточка с формой */
+.contact-card {
+    flex: 1;
+    min-width: 300px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    color: var(--text);
+}
+
+.contact-card h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-card input,
+.contact-card textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+/* --- ПОДВАЛ (FOOTER) --- */
+footer {
+    background: #1a252f;
+    color: #7f8c8d;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* ПЛАВАЮЩАЯ КНОПКА ЗВОНКА (ТОЛЬКО МОБИЛЬНЫЕ) */
+.mobile-call-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366; /* Цвет звонка */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 2000;
+    display: none; /* Скрыто на десктопе */
+    animation: pulse 2s infinite;
+}
+
+/* Пульсация для кнопки звонка */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* --- АДАПТИВНОСТЬ (RESPONSIVE) --- */
+@media (max-width: 768px) {
+    /* Скрываем навигацию, оставляем лого */
+    .nav-links, .btn-nav {
+        display: none;
+    }
+    .nav-container {
+        justify-content: center;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-outline {
+        margin: 15px 0 0 0;
+        display: block;
+    }
+    
+    /* Показываем кнопку звонка */
+    .mobile-call-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+ 
+
+}
