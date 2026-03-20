@@ -19,6 +19,7 @@ if [ ! -f "mailcow.conf" ]; then
 fi
 
 sed -i 's/172.22.1/172.25.1/g' docker-compose.yml
+docker compose pull
 docker compose up -d
 
 cd ~/irkol
