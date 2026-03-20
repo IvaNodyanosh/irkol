@@ -1,15 +1,30 @@
 services:
   web:
     build: .
+    container_name: my_main_site
     restart: always
+    networks:
+      - app-network
 
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
+    container_name: npm
     restart: always
     ports:
       - '80:80'   # HTTP
       - '443:443' # HTTPS
-      - '81:81'   # Admin NPM for generate to SSL sertificate
+      - '81:81'   # Адмінка NPM
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - app-network
+      - mailcow-network
+
+networks:
+  app-network:
+    driver: bridge
+
+  mailcow-network:
+    external: true
+    name: mailcowdockerized_mailcow-network
